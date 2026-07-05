@@ -1,0 +1,21 @@
+robin@mandible:~/pico/rp2040pio$ ./run_monitor 
+Emulation Monitor Control Program Version 0.1 for
+RP2040 PIO Emulator Version 0.1 / jvm 11.0.31 / 55.0
+Copyright © 2021 by Jürgen Reuter, Karlsruhe, Germany.
+
+> load -e squarewave
+parsed program "squarewave" with 4 PIO SM instructions
+(pio0:sm*) loaded program squarewave at address 0x00
+
+> 
+> script -d -e squarewave
+> 
+> trace -c 5 --show-gpio
+> 
+
+=================================================
+//  note: use of absolute paths
+//
+> load -f /home/robin/pico/projects/pio_blink/blink.hex
+>
+> script -d -f /home/robin/pico/projects/pio_blink/blink.mon

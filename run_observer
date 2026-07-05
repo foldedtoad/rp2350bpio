@@ -1,0 +1,3 @@
+#
+cd jar
+java -jar rp2040pio_gpioobserver.jar
