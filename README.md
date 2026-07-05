@@ -6,8 +6,11 @@ There are several significant differences between the rp2040 and the rp2350b.
 The rp2350b has the following additional features relevent to an emulatora:
 * 3 PIOs
 * 12 SMs
+  
+The development system was Ubuntu 26.04 LTS.    
+Basically, follow the original rp2040pio installation procedures.
 
-## Overview
+## Original Overview with Minor Modifications
 An emulator of the RP2350B state machines.
 This emulator is _not_ intended as a real-time emulation of the actual
 hardware, but as a handy tool for understanding how the PIO works and
@@ -17,7 +20,7 @@ For detailed information, see [the full docs on readthedocs.io][1]
 
 ## Motivation
 
-What is the purpose of an RP2040 emulator if you can easily use the
+What is the purpose of an RP2350B emulator if you can easily use the
 original?  There are a number of good reasons for doing so:
 
 * To be able to trace / single step a PIO program as an invaluable aid
