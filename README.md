@@ -3,7 +3,7 @@
 ## Raison d'être
 This project's source came from the original rp2040pio and will be modified to support the RP2350B mcu.  
 There are several significant differences between the rp2040 and the rp2350b.  
-The rp2350b has the following additional features relevent to an emulatora:
+The rp2350b has the following additional features relevent to an emulator
 * 3 PIOs
 * 12 SMs
   
