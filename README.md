@@ -1,5 +1,13 @@
 # RP2350B PIO Emulator
 
+## Raison d'être
+This project's source came from the original rp2040pio and will be modified to support the RP2350B mcu.  
+There are several significant differences between the rp2040 and the rp2350b.  
+The rp2350b has the following additional features relevent to an emulatora:
+* 3 PIOs
+* 12 SMs
+
+## Overview
 An emulator of the RP2350B state machines.
 This emulator is _not_ intended as a real-time emulation of the actual
 hardware, but as a handy tool for understanding how the PIO works and
