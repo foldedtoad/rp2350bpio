@@ -1,6 +1,6 @@
-# RP2040 PIO Emulator
+# RP2350B PIO Emulator
 
-An emulator of the RP2040 state machines.
+An emulator of the RP2350B state machines.
 This emulator is _not_ intended as a real-time emulation of the actual
 hardware, but as a handy tool for understanding how the PIO works and
 for testing and debugging when developing code for the PIO.
@@ -14,11 +14,11 @@ original?  There are a number of good reasons for doing so:
 
 * To be able to trace / single step a PIO program as an invaluable aid
   for developing and debugging, which is not easily possible directly
-  on the RP2040 hardware.
+  on the RP2350B hardware.
 
 * To inspect all of the PIO's internal state while developing and
   debugging a PIO program.  This feature applies even to those parts
-  of the PIO that are not accessible when running on real RP2040
+  of the PIO that are not accessible when running on real RP2350B
   hardware, such as:
 
   * the contents of PIO registers X, Y, ISR and OSR,
@@ -32,7 +32,7 @@ original?  There are a number of good reasons for doing so:
 
 * To debug your PIO program in the context of your IDE: The emulator
   will typically run on your development host machine.  That is, there
-  is no need to upload the PIO program to a real RPI2040 for each and
+  is no need to upload the PIO program to a real RP2350B for each and
   every tiny change, thus saving time and stress in the course of
   small and frequent development cycles.
 
