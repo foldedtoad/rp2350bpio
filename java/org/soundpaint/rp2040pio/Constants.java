@@ -93,21 +93,10 @@ public interface Constants
       " / " + System.getProperty("java.class.version");
   }
 
-/*  
-  // For Std RP2350 with 32 GPIOs
-  public static final int GPIO_NUM = 32;
-*/
-
-  // For RP2350B with 48 GPIOs
+  // For RP2350B with 48 GPIOs (0..47)
   public static final int GPIO_NUM = 48;
-
   public static final int MEMORY_SIZE = 32;  
   public static final int FIFO_DEPTH = 4;
-
-/*
-  // For RP2040 with 2 PIOs (PIO0, PIO1)
-  public static final int PIO_NUM = 2;
-*/
 
   // For RP2350B with 3 PIOs (PIO0, PIO1, PIO2)
   public static final int PIO_NUM = 3;
@@ -123,18 +112,34 @@ public interface Constants
   public static final int PIO0_EMU_BASE = PIO0_BASE + 0x08000000;
   public static final int PIO1_BASE = 0x50300000;
   public static final int PIO1_EMU_BASE = PIO1_BASE + 0x08000000;
+  public static final int PIO2_BASE = 0x50400000;
+  public static final int PIO2_EMU_BASE = PIO2_BASE + 0x08000000;
   public static final int EMULATOR_BASE = 0x58000000;
 
   public static int getPIOBaseAddress(final int pioNum)
   {
     checkPioNum(pioNum, "PIO index number");
-    return pioNum == 0 ? PIO0_BASE : PIO1_BASE;
+    //return pioNum == 0 ? PIO0_BASE : PIO1_BASE;
+    switch (pioNum) {
+    case 0: return PIO0_BASE;
+    case 1: return PIO1_BASE;
+    case 2: return PIO2_BASE;
+    default:
+      throw new InternalError("unexpected case");
+    }    
   }
 
   public static int getPIOEmuBaseAddress(final int pioNum)
   {
     checkPioNum(pioNum, "PIO index number");
-    return pioNum == 0 ? PIO0_EMU_BASE : PIO1_EMU_BASE;
+    //return pioNum == 0 ? PIO0_EMU_BASE : PIO1_EMU_BASE;
+    switch (pioNum) {
+    case 0: return PIO0_EMU_BASE;
+    case 1: return PIO1_EMU_BASE;
+    case 2: return PIO2_EMU_BASE;
+    default:
+      throw new InternalError("unexpected case");
+    }
   }
 
   // Emulator registers addressing
@@ -275,6 +280,7 @@ public interface Constants
     SIO(5, "sio"),
     PIO0(6, "pio0"),
     PIO1(7, "pio1"),
+    PIO2(7, "pio2"),
     GPCK(8, "gpck"),
     USB(9, "usb"),
     NULL(15, "null");

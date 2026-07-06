@@ -282,7 +282,7 @@ public class Gpio extends Command
   {
     final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
     pioSdk.gpioInit(gpioNum);
-    console.printf("(pio%d:sm*) initialized GPIO pin %02x for use with PIO%d%n",
+    console.printf("(pio%d:sm*) initialized GPIO pin %d for use with PIO%d%n",
                    pioNum, gpioNum, pioNum);
   }
 
@@ -294,14 +294,14 @@ public class Gpio extends Command
         PIOEmuRegisters.getAddress(pioNum, PIOEmuRegisters.Regs.GPIO_PINS);
       final int mask = 0x1 << gpioNum;
       sdk.hwSetBits(address, mask);
-      console.printf("(pio%d:sm*) set GPIO output pin %02x of PIO%d to 1%n",
+      console.printf("(pio%d:sm*) set GPIO output pin %d of PIO%d to 1%n",
                      pioNum, gpioNum, pioNum);
     } else {
       final int address =
         PicoEmuRegisters.getAddress(PicoEmuRegisters.Regs.GPIO_PADIN);
       final int mask = 0x1 << gpioNum;
       sdk.hwSetBits(address, mask);
-      console.printf("(pio*:sm*) set GPIO external input %02x to 1%n",
+      console.printf("(pio*:sm*) set GPIO external input %d to 1%n",
                      gpioNum, pioNum);
     }
   }
@@ -314,14 +314,14 @@ public class Gpio extends Command
         PIOEmuRegisters.getAddress(pioNum, PIOEmuRegisters.Regs.GPIO_PINS);
       final int mask = 0x1 << gpioNum;
       sdk.hwClearBits(address, mask);
-      console.printf("(pio%d:sm*) set GPIO output pin %02x of PIO%d to 0%n",
+      console.printf("(pio%d:sm*) set GPIO output pin %d of PIO%d to 0%n",
                      pioNum, gpioNum, pioNum);
     } else {
       final int address =
         PicoEmuRegisters.getAddress(PicoEmuRegisters.Regs.GPIO_PADIN);
       final int mask = 0x1 << gpioNum;
       sdk.hwClearBits(address, mask);
-      console.printf("(pio*:sm*) set GPIO external input %02x to 0%n",
+      console.printf("(pio*:sm*) set GPIO external input %d to 0%n",
                      gpioNum, pioNum);
     }
   }
@@ -333,7 +333,7 @@ public class Gpio extends Command
       PIOEmuRegisters.getAddress(pioNum, PIOEmuRegisters.Regs.GPIO_PINDIRS);
     final int mask = 0x1 << gpioNum;
     sdk.hwSetBits(address, mask);
-    console.printf("(pio%d:sm*) set direction of GPIO pin %02x of PIO%d to " +
+    console.printf("(pio%d:sm*) set direction of GPIO pin %d of PIO%d to " +
                    "\"out\"%n",
                    pioNum, gpioNum, pioNum);
   }
@@ -345,7 +345,7 @@ public class Gpio extends Command
       PIOEmuRegisters.getAddress(pioNum, PIOEmuRegisters.Regs.GPIO_PINDIRS);
     final int mask = 0x1 << gpioNum;
     sdk.hwClearBits(address, mask);
-    console.printf("(pio%d:sm*) set direction of GPIO pin %02x of PIO%d to " +
+    console.printf("(pio%d:sm*) set direction of GPIO pin %d of PIO%d to " +
                    "\"in\"%n",
                    pioNum, gpioNum, pioNum);
   }
@@ -358,7 +358,7 @@ public class Gpio extends Command
       GPIOIOBank0Registers.getGPIOAddress(gpioNum,
                                           GPIOIOBank0Registers.Regs.GPIO0_CTRL);
     sdk.hwWriteMasked(address, overridePolicy << lsb, policyBits);
-    console.printf("(pio*:sm*) set %s override of GPIO pin %02x to policy '%s'%n",
+    console.printf("(pio*:sm*) set %s override of GPIO pin %d to policy '%s'%n",
                    target, gpioNum, policy);
   }
 
@@ -371,7 +371,7 @@ public class Gpio extends Command
                                           GPIOIOBank0Registers.Regs.GPIO0_CTRL);
     final int ctrl = sdk.readAddress(address);
     final Policy policy = Policy.fromValue((ctrl & policyBits) >>> lsb);
-    console.printf("(pio*:sm*) %s override of GPIO pin %02x policy is '%s'%n",
+    console.printf("(pio*:sm*) %s override of GPIO pin %d policy is '%s'%n",
                    target, gpioNum, policy.getDisplayValue());
   }
 

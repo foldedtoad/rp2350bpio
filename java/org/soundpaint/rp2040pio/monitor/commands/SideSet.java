@@ -113,9 +113,9 @@ public class SideSet extends Command
       final Integer optBaseValue = options.getValue(optBase);
       if (optBaseValue != null) {
         final int base = optBaseValue;
-        if ((base < 0) || (base > 31)) {
+        if ((base < 0) || (base > 47)) {
           throw new CmdOptions.
-            ParseException("base must be in the range 0…31");
+            ParseException("base must be in the range 0…47");
         }
       }
     }

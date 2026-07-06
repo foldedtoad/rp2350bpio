@@ -3,7 +3,7 @@
 .. # DO NOT CHANGE THIS FILE, since changes will be lost upon
 .. # its next update.  Instead, change the info in the source code.
 .. # This file was automatically created on:
-.. # 2026-07-04T23:18:03.729635Z
+.. # 2026-07-06T01:36:47.150714Z
 
 .. _section-top_emulator_global_registers:
 
