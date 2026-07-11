@@ -1169,13 +1169,13 @@ public class PIOSDK implements Constants
     final int pins = memory.readAddress(pinsAddress);
     final int pinDirs = memory.readAddress(pinDirsAddress);
 
-// robin
-    for (int gpioNum = 0; gpioNum < Constants.GPIO_NUM; gpioNum++) {
+/*    for (int gpioNum = 0; gpioNum < Constants.GPIO_NUM; gpioNum++) {
       final Bit level;
       level = Bit.fromValue((pins >>> gpioNum) & 0x1);
       console.printf("%d", level.getValue());
     }
     console.printf("\n");
+*/
 
     for (int gpioNum = 0; gpioNum < Constants.GPIO_NUM; gpioNum++) {
       final Direction direction =
