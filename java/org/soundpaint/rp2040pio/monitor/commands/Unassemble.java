@@ -130,7 +130,13 @@ public class Unassemble extends Command
       options.getValue(optStart) & (Constants.MEMORY_SIZE - 1);
     final int stopAddress =
       (startAddress + count) & (Constants.MEMORY_SIZE - 1);
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;      
     final int addressAddr =
       PIORegisters.getSMAddress(pioNum, smNum,
                                 PIORegisters.Regs.SM0_ADDR);

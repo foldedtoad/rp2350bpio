@@ -26,6 +26,7 @@ package org.soundpaint.rp2040pio.sdk;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import org.soundpaint.rp2040pio.AddressSpace;
 import org.soundpaint.rp2040pio.Bit;
 import org.soundpaint.rp2040pio.Constants;
@@ -47,6 +48,7 @@ public class PIOSDK implements Constants
   private final int pioNum;
   private final AddressSpace memory;
   private final GPIOSDK gpioSdk;
+  private final PrintStream console;
 
   private PIOSDK()
   {
@@ -66,6 +68,7 @@ public class PIOSDK implements Constants
     this.pioNum = pioNum;
     this.memory = memory;
     this.gpioSdk = gpioSdk;
+    this.console = System.out;
   }
 
   /**
@@ -1165,17 +1168,28 @@ public class PIOSDK implements Constants
       PIOEmuRegisters.getAddress(pioNum, PIOEmuRegisters.Regs.GPIO_PINDIRS);
     final int pins = memory.readAddress(pinsAddress);
     final int pinDirs = memory.readAddress(pinDirsAddress);
+
+// robin
+    for (int gpioNum = 0; gpioNum < Constants.GPIO_NUM; gpioNum++) {
+      final Bit level;
+      level = Bit.fromValue((pins >>> gpioNum) & 0x1);
+      console.printf("%d", level.getValue());
+    }
+    console.printf("\n");
+
     for (int gpioNum = 0; gpioNum < Constants.GPIO_NUM; gpioNum++) {
       final Direction direction =
         Direction.fromValue((pinDirs >>> gpioNum) & 0x1);
       final Bit level;
       if (direction == Direction.OUT) {
         level = Bit.fromValue((pins >>> gpioNum) & 0x1);
+        //console.printf("[%d:%d]", gpioNum, level.getValue());
       } else {
         level = gpioSdk.getInputLevel(gpioNum, GPIOSDK.Override.AFTER);
       }
       pinStates[gpioNum] = PinState.fromValues(direction, level);
     }
+
     return pinStates;
   }
 }

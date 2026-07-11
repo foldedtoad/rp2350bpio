@@ -98,7 +98,13 @@ public class Sm extends Command
   private void displaySmStatus(final int pioNum, final int smNum)
     throws IOException
   {
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;    
     final boolean enabled = pioSdk.smGetEnabled(smNum);
     console.printf("(pio%d:sm%d) %s%n", pioNum, smNum,
                    enabled ? "enabled" : "disabled");
@@ -108,7 +114,13 @@ public class Sm extends Command
                                final boolean enable)
     throws IOException
   {
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;    
     pioSdk.smSetEnabled(smNum, enable);
     console.printf("(pio%d:sm%d) set %s%n", pioNum, smNum,
                    enable ? "enabled" : "disabled");
@@ -116,7 +128,13 @@ public class Sm extends Command
 
   private void restart(final int pioNum, final int smNum) throws IOException
   {
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;    
     pioSdk.smRestart(smNum);
     console.printf("(pio%d:sm%d) restarted%n", pioNum, smNum);
   }

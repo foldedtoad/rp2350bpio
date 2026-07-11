@@ -107,16 +107,24 @@ public class PIOGPIOArrayPanel extends JPanel
 
   public void updateStatus() throws IOException
   {
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;    
     final PinState[] pinStates = pioSdk.getPinStates();
+
+/*
+    for (long gpioNum = 0; gpioNum < Constants.GPIO_NUM; gpioNum++) {
+      console.printf("[%d:%d]", pinStates[gpioNum].getLevel());
+    }
+    console.printf("\n");    
+*/
+
     for (int gpioNum = 0; gpioNum < Constants.GPIO_NUM; gpioNum++) {
       final PinState pinState = pinStates[gpioNum];
-/*
-      if (gpioNum == 16) {
-        Bit level = pinState.getLevel();
-        console.printf("pinState[%d] %s\n", gpioNum, level.getLevel());
-      }
-*/      
       final PIOGPIOPanel panel = panels[gpioNum];
       panel.updateStatus(pinState.getDirection(), pinState.getLevel());
     }

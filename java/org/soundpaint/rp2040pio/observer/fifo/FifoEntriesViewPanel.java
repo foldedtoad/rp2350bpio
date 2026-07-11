@@ -388,7 +388,13 @@ public class FifoEntriesViewPanel extends JPanel
 
   private void updateEntries(final int shiftCtrl) throws IOException
   {
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;    
     updateFifoContents();
     final int smJoin =
       (shiftCtrl >>> Constants.SM0_SHIFTCTRL_FJOIN_TX_LSB) & 0x3;

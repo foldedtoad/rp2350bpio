@@ -46,6 +46,7 @@ public class SDK implements Constants
   private final GPIOSDK gpioSdk;
   private final PIOSDK pio0Sdk;
   private final PIOSDK pio1Sdk;
+  private final PIOSDK pio2Sdk;
 
   private SDK()
   {
@@ -65,12 +66,14 @@ public class SDK implements Constants
     gpioSdk = new GPIOSDK(memory);
     pio0Sdk = new PIOSDK(0, memory, gpioSdk);
     pio1Sdk = new PIOSDK(1, memory, gpioSdk);
+    pio2Sdk = new PIOSDK(2, memory, gpioSdk);
   }
 
   public PrintStream getConsole() { return console; }
   public GPIOSDK getGPIOSDK() { return gpioSdk; }
   public PIOSDK getPIO0SDK() { return pio0Sdk; }
   public PIOSDK getPIO1SDK() { return pio1Sdk; }
+  public PIOSDK getPIO2SDK() { return pio2Sdk; }
 
   public int readAddress(final int address) throws IOException
   {

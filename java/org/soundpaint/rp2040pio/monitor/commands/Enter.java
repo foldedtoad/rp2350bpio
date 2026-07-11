@@ -163,7 +163,13 @@ public class Enter extends Command
       optAddressValue & Constants.MEMORY_SIZE - 1 :
       0;
     final Integer optValueValue = options.getValue(optValue);
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK index = null;
+    switch (pioNum) {
+    case 0: index = sdk.getPIO0SDK(); break;
+    case 1: index = sdk.getPIO1SDK(); break;
+    case 2: index = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = index;
     if (optValueValue != null) {
       sdk.writeAddress(PIORegisters.getMemoryAddress(pioNum, address),
                        optValueValue);

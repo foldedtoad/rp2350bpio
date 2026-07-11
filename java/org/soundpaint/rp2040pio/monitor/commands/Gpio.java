@@ -280,7 +280,13 @@ public class Gpio extends Command
 
   private void initGpio(final int pioNum, final int gpioNum) throws IOException
   {
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;    
     pioSdk.gpioInit(gpioNum);
     console.printf("(pio%d:sm*) initialized GPIO pin %d for use with PIO%d%n",
                    pioNum, gpioNum, pioNum);

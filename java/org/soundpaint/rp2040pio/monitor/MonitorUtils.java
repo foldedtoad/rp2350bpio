@@ -107,7 +107,13 @@ public class MonitorUtils
     throws IOException
   {
     Constants.checkPioNum(pioNum, "PIO index number");
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;
     final PinState[] pinStates = pioSdk.getPinStates();
     final String pioNumId = String.format("%d", pioNum);
     final String gpioPinBits = asBitArrayDisplay(pinStates);

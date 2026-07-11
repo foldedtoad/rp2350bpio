@@ -235,7 +235,13 @@ public class Clock extends Command
                           final float divider)
     throws IOException
   {
-    final PIOSDK pioSdk = pioNum == 0 ? sdk.getPIO0SDK() : sdk.getPIO1SDK();
+    PIOSDK PIOxSDK = null;
+    switch (pioNum) {
+    case 0: PIOxSDK = sdk.getPIO0SDK(); break;
+    case 1: PIOxSDK = sdk.getPIO1SDK(); break;
+    case 2: PIOxSDK = sdk.getPIO2SDK(); break;
+    }
+    final PIOSDK pioSdk = PIOxSDK;
     pioSdk.smSetClkDiv(smNum, divider);
     final int clkDivValue = getClkDivValue(pioNum, smNum);
     final int intDivider = getIntDivider(clkDivValue);
