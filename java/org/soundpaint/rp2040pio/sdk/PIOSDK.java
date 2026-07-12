@@ -1183,7 +1183,6 @@ public class PIOSDK implements Constants
       final Bit level;
       if (direction == Direction.OUT) {
         level = Bit.fromValue((pins >>> gpioNum) & 0x1);
-        //console.printf("[%d:%d]", gpioNum, level.getValue());
       } else {
         level = gpioSdk.getInputLevel(gpioNum, GPIOSDK.Override.AFTER);
       }

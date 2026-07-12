@@ -36,6 +36,7 @@ public class Emulator
   private final GPIO gpio;
   private final PIO pio0;
   private final PIO pio1;
+  private final PIO pio2;
 
   private Emulator()
   {
@@ -52,6 +53,7 @@ public class Emulator
     gpio = new GPIO(console, masterClock);
     pio0 = gpio.getPIO0();
     pio1 = gpio.getPIO1();
+    pio2 = gpio.getPIO2();    
   }
 
   public PrintStream getConsole()
@@ -79,12 +81,18 @@ public class Emulator
     return pio1;
   }
 
+  public PIO getPIO2()
+  {
+    return pio2;
+  }
+
   public void reset()
   {
     masterClock.reset();
     gpio.reset();
     pio0.reset();
     pio1.reset();
+    pio2.reset();
   }
 
   public void terminate()

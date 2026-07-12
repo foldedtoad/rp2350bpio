@@ -161,6 +161,7 @@ public class GPIO implements Constants
   private final PrintStream console;
   private final PIO pio0;
   private final PIO pio1;
+  private final PIO pio2;
   private final Terminal[] terminals;
   private int regINPUT_SYNC_BYPASS; // bits 0…31 of INPUT_SYNC_BYPASS
                                     // (contents currently ignored)
@@ -181,6 +182,7 @@ public class GPIO implements Constants
     this.console = console;
     pio0 = new PIO(0, console, masterClock, this);
     pio1 = new PIO(1, console, masterClock, this);
+    pio2 = new PIO(2, console, masterClock, this);    
     terminals = new Terminal[GPIO_NUM];
     for (int port = 0; port < terminals.length; port++) {
       terminals[port] = new Terminal(port);
@@ -198,6 +200,8 @@ public class GPIO implements Constants
   public PIO getPIO0() { return pio0; }
 
   public PIO getPIO1() { return pio1; }
+
+  public PIO getPIO2() { return pio2; }
 
   public synchronized int getGPIO_PADIN()
   {
@@ -377,6 +381,8 @@ public class GPIO implements Constants
       return pio0.getDirection(gpio);
     case PIO1:
       return pio1.getDirection(gpio);
+    case PIO2:
+      return pio2.getDirection(gpio);      
     case GPCK:
     case USB:
       // not implemented by this emulator
@@ -410,6 +416,8 @@ public class GPIO implements Constants
       return pio0.getLevel(gpio);
     case PIO1:
       return pio1.getLevel(gpio);
+    case PIO2:
+      return pio2.getLevel(gpio);      
     case GPCK:
     case USB:
       // not implemented by this emulator

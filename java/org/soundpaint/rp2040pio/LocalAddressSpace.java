@@ -38,6 +38,8 @@ public class LocalAddressSpace extends AddressSpace
   private final PIOEmuRegistersImpl pio0EmuRegisters;
   private final PIORegistersImpl pio1Registers;
   private final PIOEmuRegistersImpl pio1EmuRegisters;
+  private final PIORegistersImpl pio2Registers;
+  private final PIOEmuRegistersImpl pio2EmuRegisters;
 
   /*
    * TODO: Really should replace this simple-minded list approach with
@@ -71,6 +73,12 @@ public class LocalAddressSpace extends AddressSpace
     registerSetList.add(pio1Registers);
     pio1EmuRegisters = new PIOEmuRegistersImpl(pio1);
     registerSetList.add(pio1EmuRegisters);
+
+    final PIO pio2 = emulator.getPIO2();
+    pio2Registers = new PIORegistersImpl(pio2);
+    registerSetList.add(pio2Registers);
+    pio2EmuRegisters = new PIOEmuRegistersImpl(pio2);
+    registerSetList.add(pio2EmuRegisters);    
   }
 
   @Override
@@ -99,6 +107,11 @@ public class LocalAddressSpace extends AddressSpace
     return pio1Registers.getAddress(register);
   }
 
+  public int getPIO2Address(final PIORegistersImpl.Regs register)
+  {
+    return pio2Registers.getAddress(register);
+  }
+
   public int getPIO0Address(final PIOEmuRegistersImpl.Regs register)
   {
     return pio0EmuRegisters.getAddress(register);
@@ -108,6 +121,11 @@ public class LocalAddressSpace extends AddressSpace
   {
     return pio1EmuRegisters.getAddress(register);
   }
+
+  public int getPIO2Address(final PIOEmuRegistersImpl.Regs register)
+  {
+    return pio2EmuRegisters.getAddress(register);
+  }  
 
   private static int address2register(final RegisterSet registers,
                                       final int address)

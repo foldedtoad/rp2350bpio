@@ -114,8 +114,8 @@ public class PIO implements Constants, Clock.TransitionListener
     if (index < 0) {
       throw new IllegalArgumentException("PIO index < 0: " + index);
     }
-    if (index > 1) {
-      throw new IllegalArgumentException("PIO index > 1: " + index);
+    if (index > 2) {
+      throw new IllegalArgumentException("PIO index > 2: " + index);
     }
     Objects.requireNonNull(console);
     Objects.requireNonNull(masterClock);
