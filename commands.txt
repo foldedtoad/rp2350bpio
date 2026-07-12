@@ -16,6 +16,6 @@ parsed program "squarewave" with 4 PIO SM instructions
 =================================================
 //  note: use of absolute paths
 //
-> load -f /home/robin/pico/projects/pio_blink/blink.hex
->
-> script -d -f /home/robin/pico/projects/pio_blink/blink.mon
+load -f /home/robin/pico/projects/pio_blink/blink.hex
+
+script -d -f /home/robin/pico/projects/pio_blink/blink.mon
