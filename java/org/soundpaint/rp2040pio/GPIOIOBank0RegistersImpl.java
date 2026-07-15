@@ -94,6 +94,25 @@ public class GPIOIOBank0RegistersImpl extends GPIOIOBank0Registers
     case GPIO27_STATUS:
     case GPIO28_STATUS:
     case GPIO29_STATUS:
+    // For RP2350B
+    case GPIO30_STATUS:
+    case GPIO31_STATUS:
+    case GPIO32_STATUS:
+    case GPIO33_STATUS:
+    case GPIO34_STATUS:
+    case GPIO35_STATUS:
+    case GPIO36_STATUS:
+    case GPIO37_STATUS:
+    case GPIO38_STATUS:
+    case GPIO39_STATUS:
+    case GPIO40_STATUS:
+    case GPIO41_STATUS:
+    case GPIO42_STATUS:
+    case GPIO43_STATUS:
+    case GPIO44_STATUS:
+    case GPIO45_STATUS:
+    case GPIO46_STATUS:
+    case GPIO47_STATUS:
       break; // read-only address
     case GPIO0_CTRL:
     case GPIO1_CTRL:
@@ -125,6 +144,25 @@ public class GPIOIOBank0RegistersImpl extends GPIOIOBank0Registers
     case GPIO27_CTRL:
     case GPIO28_CTRL:
     case GPIO29_CTRL:
+    // For RP2350B
+    case GPIO30_CTRL:
+    case GPIO31_CTRL:
+    case GPIO32_CTRL:
+    case GPIO33_CTRL:
+    case GPIO34_CTRL:
+    case GPIO35_CTRL:
+    case GPIO36_CTRL:
+    case GPIO37_CTRL:
+    case GPIO38_CTRL:
+    case GPIO39_CTRL:
+    case GPIO40_CTRL:
+    case GPIO41_CTRL:
+    case GPIO42_CTRL:
+    case GPIO43_CTRL:
+    case GPIO44_CTRL:
+    case GPIO45_CTRL:
+    case GPIO46_CTRL:
+    case GPIO47_CTRL:
       gpio.setCTRL((regNum - Regs.GPIO0_CTRL.ordinal()) / GPIO_DATA_SIZE,
                    value, mask, xor);
       break;
@@ -223,6 +261,25 @@ public class GPIOIOBank0RegistersImpl extends GPIOIOBank0Registers
     case GPIO27_STATUS:
     case GPIO28_STATUS:
     case GPIO29_STATUS:
+    // For RP2350B
+    case GPIO30_STATUS:
+    case GPIO31_STATUS:
+    case GPIO32_STATUS:
+    case GPIO33_STATUS:
+    case GPIO34_STATUS:
+    case GPIO35_STATUS:
+    case GPIO36_STATUS:
+    case GPIO37_STATUS:
+    case GPIO38_STATUS:
+    case GPIO39_STATUS:
+    case GPIO40_STATUS:
+    case GPIO41_STATUS:
+    case GPIO42_STATUS:
+    case GPIO43_STATUS:
+    case GPIO44_STATUS:
+    case GPIO45_STATUS:
+    case GPIO46_STATUS:
+    case GPIO47_STATUS:      
       return
         gpio.getSTATUS((regNum - Regs.GPIO0_STATUS.ordinal()) / GPIO_DATA_SIZE);
     case GPIO0_CTRL:
@@ -255,6 +312,25 @@ public class GPIOIOBank0RegistersImpl extends GPIOIOBank0Registers
     case GPIO27_CTRL:
     case GPIO28_CTRL:
     case GPIO29_CTRL:
+    // For RP2350B
+    case GPIO30_CTRL:
+    case GPIO31_CTRL:
+    case GPIO32_CTRL:
+    case GPIO33_CTRL:
+    case GPIO34_CTRL:
+    case GPIO35_CTRL:
+    case GPIO36_CTRL:
+    case GPIO37_CTRL:
+    case GPIO38_CTRL:
+    case GPIO39_CTRL:
+    case GPIO40_CTRL:
+    case GPIO41_CTRL:
+    case GPIO42_CTRL:
+    case GPIO43_CTRL:
+    case GPIO44_CTRL:
+    case GPIO45_CTRL:
+    case GPIO46_CTRL:
+    case GPIO47_CTRL:      
       return
         gpio.getCTRL((regNum - Regs.GPIO0_CTRL.ordinal()) / GPIO_DATA_SIZE);
     case INTR0:

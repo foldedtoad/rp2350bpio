@@ -91,6 +91,25 @@ public class GPIOPadsBank0RegistersImpl extends GPIOPadsBank0Registers
     case GPIO27:
     case GPIO28:
     case GPIO29:
+    // For RP2350B
+    case GPIO30:
+    case GPIO31:
+    case GPIO32:
+    case GPIO33:
+    case GPIO34:
+    case GPIO35:
+    case GPIO36:
+    case GPIO37:
+    case GPIO38:
+    case GPIO39:
+    case GPIO40:
+    case GPIO41:
+    case GPIO42:
+    case GPIO43:
+    case GPIO44:
+    case GPIO45:
+    case GPIO46:
+    case GPIO47:
       // TODO
       break;
     case SWCLK:
@@ -142,6 +161,25 @@ public class GPIOPadsBank0RegistersImpl extends GPIOPadsBank0Registers
     case GPIO27:
     case GPIO28:
     case GPIO29:
+    // For RP2350B
+    case GPIO30:
+    case GPIO31:
+    case GPIO32:
+    case GPIO33:
+    case GPIO34:
+    case GPIO35:
+    case GPIO36:
+    case GPIO37:
+    case GPIO38:
+    case GPIO39:
+    case GPIO40:
+    case GPIO41:
+    case GPIO42:
+    case GPIO43:
+    case GPIO44:
+    case GPIO45:
+    case GPIO46:
+    case GPIO47:      
       return 0; // TODO
     case SWCLK:
       return 0; // TODO

@@ -27,6 +27,7 @@ package org.soundpaint.rp2040pio;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.PrintStream;
 
 public class LocalAddressSpace extends AddressSpace
 {
@@ -38,6 +39,7 @@ public class LocalAddressSpace extends AddressSpace
   private final PIOEmuRegistersImpl pio0EmuRegisters;
   private final PIORegistersImpl pio1Registers;
   private final PIOEmuRegistersImpl pio1EmuRegisters;
+  // For RP22350B
   private final PIORegistersImpl pio2Registers;
   private final PIOEmuRegistersImpl pio2EmuRegisters;
 
@@ -47,6 +49,8 @@ public class LocalAddressSpace extends AddressSpace
    * soon as the number of registers interfaces grows.
    */
   private final List<RegisterSet> registerSetList;
+
+  final PrintStream console = System.out;
 
   public LocalAddressSpace(final Emulator emulator)
   {
@@ -74,6 +78,7 @@ public class LocalAddressSpace extends AddressSpace
     pio1EmuRegisters = new PIOEmuRegistersImpl(pio1);
     registerSetList.add(pio1EmuRegisters);
 
+    // For RP2350B
     final PIO pio2 = emulator.getPIO2();
     pio2Registers = new PIORegistersImpl(pio2);
     registerSetList.add(pio2Registers);
@@ -107,6 +112,7 @@ public class LocalAddressSpace extends AddressSpace
     return pio1Registers.getAddress(register);
   }
 
+  // For RP2350B
   public int getPIO2Address(final PIORegistersImpl.Regs register)
   {
     return pio2Registers.getAddress(register);
@@ -122,15 +128,19 @@ public class LocalAddressSpace extends AddressSpace
     return pio1EmuRegisters.getAddress(register);
   }
 
+  // For RP2350B
   public int getPIO2Address(final PIOEmuRegistersImpl.Regs register)
   {
     return pio2EmuRegisters.getAddress(register);
   }  
 
-  private static int address2register(final RegisterSet registers,
+  private  int address2register(final RegisterSet registers,
                                       final int address)
   {
     checkAddressAligned(address);
+    //int base = registers.getBaseAddress();
+    //int addr = address;
+    //console.printf("add2reg: addr(%08x), base(%08x) \n", address, base);
     return ((address - registers.getBaseAddress()) & ~0x3000) >>> 2;
   }
 
@@ -139,10 +149,15 @@ public class LocalAddressSpace extends AddressSpace
   {
     for (final RegisterSet registers : registerSetList) {
       final int regNum = address2register(registers, address);
+
+      console.printf("getProvidingRegisters: is regNum(%d) < getSize(%d), id(%s)\n", 
+                      regNum, registers.getSize(), registers.getId());
+      
       if (regNum < registers.getSize()) {
         return registers;
       }
     }
+    console.printf("getProvidingRegisters: return null\n");
     return null;
   }
 
@@ -194,6 +209,7 @@ public class LocalAddressSpace extends AddressSpace
     if (registers != null) {
       final int regNum = address2register(registers, address);
       try {
+        console.printf("writeAddressMasked: regNum(%d)\n", regNum);
         registers.writeRegister(regNum, bits, mask, xor);
       } catch (final Throwable t) {
         final String message = t.getMessage();

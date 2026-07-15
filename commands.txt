@@ -1,17 +1,29 @@
-robin@mandible:~/pico/rp2040pio$ ./run_monitor 
-Emulation Monitor Control Program Version 0.1 for
-RP2040 PIO Emulator Version 0.1 / jvm 11.0.31 / 55.0
-Copyright © 2021 by Jürgen Reuter, Karlsruhe, Germany.
 
-> load -e squarewave
-parsed program "squarewave" with 4 PIO SM instructions
-(pio0:sm*) loaded program squarewave at address 0x00
+=================================================
 
+> gpio --pio=0 --gpio=37 --set
+> gpio --pio=0 --gpio=29 --set
+(pio0:sm*) set GPIO output pin 1 of PIO0 to 1
 > 
-> script -d -e squarewave
+> gpio --pio=0 --gpio=37 --enable
+> gpio --pio=0 --gpio=29 --enable
+(pio0:sm*) set direction of GPIO pin 1 of PIO0 to "out"
 > 
-> trace -c 5 --show-gpio
+> gpio --pio=0 --gpio=37 --init
+> gpio --pio=0 --gpio=29 --init
+(pio0:sm*) initialized GPIO pin 1 for use with PIO0
 > 
+> g
+(pio*:sm*) 01000000 00000000 00000000 00000000 00000000 00000000
+> 
+> gpio --pio=0 --gpio=37 --clear                            
+> gpio --pio=0 --gpio=29 --clear
+(pio0:sm*) set GPIO output pin 1 of PIO0 to 0
+>
+> g
+(pio*:sm*) 00000000 00000000 00000000 00000000 00000000 00000000
+> 
+
 
 =================================================
 //  note: use of absolute paths
